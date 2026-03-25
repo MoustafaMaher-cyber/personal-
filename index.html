@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostafa Maher - Neurological Rehabilitation Specialist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4FD1C5;
+            --primary-dark: #319795;
+            --bg-color: #14110F;
+            --surface: #231F1C;
+            --text-main: #E2E8F0;
+            --text-light: #A0AEC0;
+            --accent: #C8A96E;
+            --accent-hover: #E2C792;
+            --white: #FFFFFF;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(20, 17, 15, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(79, 209, 197, 0.1);
+        }
+
+        header.scrolled {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            border-bottom: 1px solid rgba(79, 209, 197, 0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .lang-toggle {
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 100px;
+            background: linear-gradient(135deg, var(--bg-color) 0%, #1E1A18 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 24px;
+            color: var(--primary);
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+        }
+
+        .hero-image {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(79, 209, 197, 0.15);
+            aspect-ratio: 4/5;
+            background-color: var(--surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Credibility Bar */
+        .credibility {
+            background-color: var(--surface);
+            padding: 40px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .credibility-logos {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            opacity: 0.6;
+            filter: grayscale(100%);
+        }
+
+        .credibility-logos img {
+            max-height: 40px;
+            max-width: 150px;
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--surface);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            border-left: 3px solid var(--accent);
+            padding-left: 16px;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Specializations */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--surface);
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: var(--transition);
+            border-top: 4px solid transparent;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-top-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(79, 209, 197, 0.1);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        /* Approach */
+        .approach {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            border-top: 1px solid rgba(79, 209, 197, 0.1);
+            border-bottom: 1px solid rgba(79, 209, 197, 0.1);
+        }
+
+        .approach .section-header h2 {
+            color: var(--primary);
+        }
+
+        .approach .section-header p {
+            color: var(--text-light);
+        }
+
+        .approach-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            position: relative;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background-color: var(--accent);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 24px;
+        }
+
+        .step h3 {
+            color: var(--text-main);
+            margin-bottom: 16px;
+        }
+
+        .step p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Achievements */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 40px;
+            border-left: 2px solid rgba(79, 209, 197, 0.2);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--accent);
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0A0807;
+            color: var(--text-main);
+            padding: 80px 0 40px;
+            border-top: 1px solid rgba(200, 169, 110, 0.2);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-about p {
+            color: rgba(255,255,255,0.7);
+            margin-top: 20px;
+            max-width: 400px;
+        }
+
+        .footer-links h4 {
+            color: var(--white);
+            margin-bottom: 24px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content, .about-grid, .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero {
+                padding-top: 140px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--surface);
+                flex-direction: column;
+                justify-content: center;
+                transition: var(--transition);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">Mostafa Maher, PT</a>
+            <nav class="nav-links" id="nav-links">
+                <a href="#about">About</a>
+                <a href="#specializations">Specializations</a>
+                <a href="#approach">Approach</a>
+                <a href="#achievements">Achievements</a>
+                <span class="lang-toggle">عربي</span>
+            </nav>
+            <button class="mobile-menu-btn" id="mobile-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <div class="hero-text fade-in">
+                <h1>Advancing Neurological<br>Rehabilitation.</h1>
+                <p>Specialized expertise in neurological rehabilitation, motor control theories, and neuromodulation. Dedicated to advancing clinical outcomes through research and evidence-based practice.</p>
+                <div class="hero-actions">
+                    <a href="#specializations" class="btn btn-primary">View Expertise</a>
+                    <a href="#about" class="btn btn-outline">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image fade-in">
+                <img src="/hero-image.jpg" alt="AI and Neuromodulation" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Credibility Bar -->
+    <div class="credibility">
+        <div class="container credibility-logos fade-in" style="font-weight: 600; font-size: 1.2rem; color: var(--primary);">
+            <span>Unify Center</span>
+            <span>Agouza Rehab Centre</span>
+            <span>Cairo University</span>
+            <span>Ministry of Health</span>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="about section-padding" id="about">
+        <div class="container about-grid">
+            <div class="about-image fade-in">
+                <img src="/about-image.jpg" alt="Clinical and Research Synergy" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; box-shadow: 0 20px 40px rgba(79, 209, 197, 0.15);" />
+            </div>
+            <div class="about-content fade-in">
+                <h2>Advancing Neurological Rehabilitation</h2>
+                <p style="margin-bottom: 20px; color: var(--text-light);">As a results-oriented physical therapist, I apply data analysis and structured thinking to enhance clinical outcomes. My deep understanding of motor control theories and mathematical models supports effective rehabilitation practices.</p>
+                <p style="margin-bottom: 30px; color: var(--text-light);">I utilize diverse manual techniques grounded in scientific research to achieve optimal functional recovery, actively integrating cutting-edge technologies like machine learning to refine prognosis and intervention strategies.</p>
+                
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">6+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Clinical Cases Managed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">30+</div>
+                        <div class="stat-label">Certifications</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Commitment</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specializations -->
+    <section class="specializations section-padding" id="specializations" style="background-color: var(--bg-color);">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Areas of Expertise</h2>
+                <p>Comprehensive rehabilitation programs designed for specific neurological conditions.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">🧠</div>
+                    <h3>Stroke Recovery</h3>
+                    <p>Intensive motor and cognitive rehabilitation to maximize independence and quality of life post-stroke.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">⚡</div>
+                    <h3>Traumatic Brain Injury</h3>
+                    <p>Structured cognitive retraining and physical therapy to address complex TBI challenges.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🧬</div>
+                    <h3>Multiple Sclerosis</h3>
+                    <p>Symptom management, fatigue reduction, and mobility preservation strategies for Multiple Sclerosis.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🚶</div>
+                    <h3>Parkinson's Disease</h3>
+                    <p>Specialized movement therapies (like LSVT BIG) to improve gait, balance, and daily function.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🦽</div>
+                    <h3>Spinal Cord Injury</h3>
+                    <p>Adaptive strategies, strength building, and functional mobility training for SCI recovery.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🤝</div>
+                    <h3>Neuromuscular Disorders</h3>
+                    <p>Targeted interventions to maintain function and manage progression in various neuromuscular conditions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Approach Section -->
+    <section class="approach section-padding" id="approach">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>The Rehabilitation Methodology</h2>
+                <p>A structured, science-backed approach to neuroplasticity and recovery.</p>
+            </div>
+            <div class="approach-steps">
+                <div class="step fade-in">
+                    <div class="step-number">1</div>
+                    <h3>Comprehensive Assessment</h3>
+                    <p>In-depth clinical evaluation of motor, sensory, and cognitive functions to establish a baseline.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">2</div>
+                    <h3>Goal Setting</h3>
+                    <p>Establishment of meaningful, functional goals based on evidence-based protocols and clinical data.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">3</div>
+                    <h3>Targeted Intervention</h3>
+                    <p>Implementation of intensive, repetitive, and task-specific therapies to drive neuroplasticity.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">4</div>
+                    <h3>Neuromodulation Technologies</h3>
+                    <p>Integrating advanced modalities such as TMS, TES, TPS, LASER, and Trans-Spinal Stimulation to enhance neuroplasticity and recovery.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">5</div>
+                    <h3>Continuous Re-evaluation</h3>
+                    <p>Regular monitoring of progress and dynamic adjustment of the treatment plan for optimal outcomes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements & Education -->
+    <section class="achievements section-padding" id="achievements">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Credentials & Experience</h2>
+                <p>A foundation of rigorous academic training and clinical excellence.</p>
+            </div>
+            <div class="achievements-grid">
+                <div class="education fade-in">
+                    <h3 style="margin-bottom: 30px; font-size: 1.8rem;">Education & Training</h3>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2015 - 2020</div>
+                        <h4 class="timeline-title">Bachelor of Science in Physical Therapy</h4>
+                        <p>Cairo University, Giza, Egypt</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2022 - 2023</div>
+                        <h4 class="timeline-title">Machine Learning & AI Developer</h4>
+                        <p>IBM & DeepLearning.AI (Coursera)</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2021</div>
+                        <h4 class="timeline-title">Data Analysis Professional</h4>
+                        <p>Udacity Nano-degree</p>
+                    </div>
+                </div>
+                <div class="experience fade-in">
+                    <h3 style="margin-bottom: 30px; font-size: 1.8rem;">Clinical Experience</h3>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Oct 2024 - Present</div>
+                        <h4 class="timeline-title">Senior of Neurological Rehabilitation</h4>
+                        <p>Unify Center, Doki, Egypt</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Jun 2022 - Present</div>
+                        <h4 class="timeline-title">Neurological Rehabilitation Specialist</h4>
+                        <p>Agouza Rehabilitation and Rheumatology Centre, Egypt</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Jun 2023 - Sep 2025</div>
+                        <h4 class="timeline-title">Neurodevelopmental Physiotherapist</h4>
+                        <p>Egyptian Ministry of Health and Population</p>
+                    </div>
+                </div>
+                <div class="research fade-in">
+                    <h3 style="margin-bottom: 30px; font-size: 1.8rem;">Research & Innovation</h3>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Since 2022</div>
+                        <h4 class="timeline-title">Spinal Cord Injury Motor Recovery</h4>
+                        <p>Spinal Cord Stimulation & Functional-Oriented Training</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Lab Works</div>
+                        <h4 class="timeline-title">Animal Model Research</h4>
+                        <p>Recording supra-spinal signals during transcutaneous electrical spinal cord stimulation (Rabbits)</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Technical Skills</div>
+                        <h4 class="timeline-title">Data Science & Machine Learning</h4>
+                        <p>Python, Pandas, Scikit-Learn, TensorFlow, Keras, SQL, Statistical Analysis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <h3 class="logo" style="color: var(--white); margin-bottom: 20px;">Mostafa Maher, PT</h3>
+                    <p>Specialized neurological rehabilitation dedicated to advancing clinical outcomes through research, data analysis, and evidence-based practice.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#specializations">Specializations</a></li>
+                        <li><a href="#achievements">Achievements</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="https://linkedin.com/in/mostafa-maher-abdelallim-4731a220b" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                        <li><a href="https://github.com/MoustafaMaher-cyber" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="mailto:mostafamaher890@outlook.com">Email Me</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Mostafa Maher. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Sticky Header & Active Nav Links
+        const header = document.getElementById('header');
+        const mobileBtn = document.getElementById('mobile-btn');
+        const navLinks = document.getElementById('nav-links');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        mobileBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Scroll Animations using Intersection Observer
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, observerOptions);
+
+        fadeElements.forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
+
